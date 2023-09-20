@@ -7,8 +7,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://nocobase.github.io/", // replace this with your deployed domain
-  base: '/blog',
+  site: "https://blog.nocobase.com/", // replace this with your deployed domain
   integrations: [
     tailwind({
       config: {
