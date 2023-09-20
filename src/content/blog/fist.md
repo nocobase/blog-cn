@@ -11,8 +11,6 @@ ogImage: ""
 description: hahahah
 ---
 
-# 第一篇文档
-
 ![](https://www.nocobase.com/images/demo/11.png)
 
 **注意:** 📌
