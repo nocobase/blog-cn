@@ -40,13 +40,13 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         </svg>
       </a>
       <p>
-        NocoBase is a scalability-first, open-source no-code development platform. No programming required, build your own collaboration platform, management system with NocoBase in hours.
+        NocoBase 是一个极易扩展的开源无代码开发平台。无需编程，使用 NocoBase 搭建自己的协作平台、管理系统，只需要几个小时。
       </p>
       {
         // only display if at least one social link is enabled
         socialCount > 0 && (
           <div class="social-wrapper">
-            <div class="social-links">Social Links:</div>
+            <div class="social-links">社交媒体链接:</div>
             <Socials />
           </div>
         )
@@ -59,7 +59,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       featuredPosts.length > 0 && (
         <>
           <section id="featured">
-            <h2>Featured</h2>
+            <h2>精选</h2>
             <ul>
               {featuredPosts.map(({ data }) => (
                 <Card
@@ -76,7 +76,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     }
 
     <section id="recent-posts">
-      <h2>Recent Posts</h2>
+      <h2>最近的文章</h2>
       <ul>
         {
           sortedPosts.map(
@@ -93,7 +93,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       </ul>
       <div class="all-posts-btn-wrapper">
         <LinkButton href="/posts">
-          All Posts
+          所有文章
           <svg xmlns="http://www.w3.org/2000/svg"
             ><path
               d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"

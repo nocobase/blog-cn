@@ -2,8 +2,8 @@
   "name": "blog",
   "version": "2.3.0",
   "scripts": {
-    "dev": "astro check --watch & astro dev",
-    "start": "astro dev",
+    "dev": "astro dev",
+    "start": "astro check --watch & astro dev",
     "build": "astro build && jampack ./dist",
     "preview": "astro preview",
     "sync": "astro sync",
