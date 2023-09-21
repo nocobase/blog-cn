@@ -23,9 +23,6 @@ jobs:
             node-version: 18
             package-manager: pnpm
 
-  deploy:
-     runs-on: ubuntu-latest
-     steps:
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v4
         with:
@@ -34,9 +31,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  gitee:
-     runs-on: ubuntu-latest
-     steps:
       - name: Mirror the Github organization repos to Gitee.
         uses: Yikun/hub-mirror-action@master
         with:
