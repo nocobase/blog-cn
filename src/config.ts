@@ -7,7 +7,7 @@ export const SITE: Site = {
   title: "NocoBase",
   ogImage: "nocobase-og.png",
   lightAndDarkMode: true,
-  postPerPage: 3,
+  postPerPage: 20,
 };
 
 export const LOCALE = ["zh-CN"]; // set to [] to use the environment default
