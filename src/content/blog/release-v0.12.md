@@ -19,7 +19,7 @@ description: ""
 
 ### Docker 安装的升级
 
-无变化，升级参考 [Docker 镜像升级指南](/welcome/getting-started/upgrading/docker-compose)
+无变化，升级参考 [Docker 镜像升级指南](https://docs-cn.nocobase.com/welcome/getting-started/upgrading/docker-compose)
 
 ### 源码安装的升级
 
@@ -30,11 +30,11 @@ git pull # 拉取新源码
 yarn clean # 清除缓存
 ```
 
-更多详情参考 [Git 源码升级指南](/welcome/getting-started/upgrading/git-clone)
+更多详情参考 [Git 源码升级指南](https://docs-cn.nocobase.com/welcome/getting-started/upgrading/git-clone)
 
 ### create-nocobase-app 安装的升级
 
-通过 `yarn create` 重新下载新版本，再更新 .env 配置，更多详情参考 [大版本升级指南](/welcome/getting-started/upgrading/create-nocobase-app#大版本升级)
+通过 `yarn create` 重新下载新版本，再更新 .env 配置，更多详情参考 [大版本升级指南](https://docs-cn.nocobase.com/welcome/getting-started/upgrading/create-nocobase-app#大版本升级)
 
 ## 不兼容的变化
 

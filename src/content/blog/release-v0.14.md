@@ -3,7 +3,7 @@ author: Lin Chen
 pubDatetime: 2023-09-11T08:22:00Z
 title: "NocoBase 0.14：全新的插件管理器，支持通过界面添加插件"
 postSlug: release-v0.14
-featured: true
+# featured: true
 draft: false
 tags:
   - release
