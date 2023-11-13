@@ -12,6 +12,8 @@ description: ""
 
 ## 新特性
 
+![Plugin settings manager](/content-static/psm.png)
+
 ## 不兼容的变化
 
 ### 插件配置页面注册方式
@@ -56,18 +58,25 @@ class HelloPlugin extends Plugin {
 }
 ```
 
+获取 pluginSettingsManager 对应的路由信息
+
+```tsx
+const baseName = app.pluginSettingsManager.getRouteName('hello');
+// admin.settings.hello
+const basePath = app.pluginSettingsManager.getRoutePath('hello');
+// /admin/settings/hello
+```
+
 如果插件配置页面内部有链接跳转的话，需要进行相应的更改，例如：
 
 ```tsx | pure
-navigate("/admin/settings/hello/tab1");
+navigate('/admin/settings/hello/1');
+navigate('/admin/settings/hello/2');
+
+// 可以更改为
+const basePath = app.pluginSettingsManager.getRoutePath('hello');
+navigate(`${basePath}/1`);
+navigate(`${basePath}/2`);
 ```
 
-改为：
-
-```tsx | pure
-import { useApp } from "@nocobase/client";
-const app = useApp();
-navigate(app.pluginSettingsManager.getRoutePath("hello")); // 当然也可以直接写 navigate('/admin/settings/hello');
-```
-
-更多信息，请参考 [插件配置页面](/development/client/settings-center)。
+更多信息，请参考 [插件配置页面](https://docs-cn.nocobase.com/development/client/plugin-settings)。
