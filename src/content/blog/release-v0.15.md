@@ -158,3 +158,6 @@ navigate(`${basePath}/2`);
 ```
 
 更多信息，请参考 [插件配置页面](https://docs-cn.nocobase.com/development/client/plugin-settings)。
+
+## 更新记录
+完整的更新记录，请参考 [更新记录](https://github.com/nocobase/nocobase/blob/main/CHANGELOG.md)。
