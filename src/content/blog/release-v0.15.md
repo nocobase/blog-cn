@@ -1,5 +1,5 @@
 ---
-pubDatetime: 2023-11-10T09:13:00Z
+pubDatetime: 2023-11-13T02:36:25.037Z
 title: "NocoBase 0.15：全新的插件设置中心"
 postSlug: release-v0.15
 # featured: true
