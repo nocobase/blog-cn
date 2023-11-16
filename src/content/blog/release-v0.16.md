@@ -3,7 +3,7 @@ pubDatetime: 2023-11-19T09:13:00Z
 title: "NocoBase 0.16：refactor SchemaInitializer & SchemaSettings"
 postSlug: release-v0.16
 # featured: true
-draft: true
+draft: false
 tags:
   - release
 ogImage: ""
