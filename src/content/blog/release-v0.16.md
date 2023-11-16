@@ -1,6 +1,6 @@
 ---
-pubDatetime: 2023-11-10T09:13:00Z
-title: "NocoBase 0.16：SchemaInitializer"
+pubDatetime: 2023-11-19T09:13:00Z
+title: "NocoBase 0.16：refactor SchemaInitializer & SchemaSettings"
 postSlug: release-v0.16
 # featured: true
 draft: true
@@ -334,4 +334,121 @@ render();
 render({ style: { marginLeft: 8 } })
 ```
 
-更多说明可以参考 [SchemaInitializer 文档](https://client.docs.nocobase.com/client/schema-initializer)。
+具体参数说明请参考 [SchemaInitializer 文档](https://client.docs.nocobase.com/apis/schema-initializer)。
+
+### SchemaSettings 的注册和实现变更
+
+以前 SchemaSettings 是和 Designer 写在一起的，例如：
+
+```tsx
+const MyDesigner = props => {
+  return (
+    <div>
+      {/* ... others */}
+      <SchemaSettings
+        title={
+          <MenuOutlined
+            role="button"
+            aria-label={getAriaLabel("schema-settings")}
+            style={{ cursor: "pointer", fontSize: 12 }}
+          />
+        }
+      >
+        <SchemaSettings.SwitchItem
+          title={"Enable Header"}
+          onClick={() => {}}
+        ></SchemaSettings.SwitchItem>
+        <SchemaSettings.Divider />
+        <SchemaSettings.ModalItem
+          title={"xxx"}
+          schema={}
+          onSubmit={props.onSubmit}
+        ></SchemaSettings.ModalItem>
+      </SchemaSettings>
+      {/* ... others */}
+    </div>
+  );
+};
+```
+
+现在需要通过 `new SchemaInitializer()` 的方式定义，例如：
+
+```tsx
+const mySettings = new SchemaInitializer({
+  name: "MySettings",
+  items: [
+    {
+      name: "enableHeader",
+      type: "switch",
+      componentProps: {
+        title: "Enable Header",
+        onClick: () => {},
+      },
+    },
+    {
+      name: "divider",
+      type: "divider",
+    },
+    {
+      name: "xxx",
+      type: "modal",
+      useComponentProps() {
+        // useSchemaDesigner() 会传入 props
+        const { onSubmit } = useSchemaDesigner();
+        return {
+          title: "xxx",
+          schema: {},
+          onSubmit,
+        };
+      },
+    },
+  ],
+});
+```
+
+具体参数说明请参考 [SchemaSettings](https://client.docs.nocobase.com/apis/schema-settings)。
+
+然后需要将其注册到 App 中，例如：
+
+```tsx
+import { Plugin } from "@nocobase/client";
+
+class MyPlugin extends Plugin {
+  async load() {
+    this.app.schemaSettingsManager.add(mySettings);
+  }
+}
+```
+
+最后到 Designer 中使用，例如：
+
+```diff
++import { useSchemaSettingsRender, SchemaDesignerProvider } from '@nocobase/client';
+
+const MyDesigner = (props) => {
++  const { render } = useSchemaSettingsRender(
++    fieldSchema['x-settings'] || 'MySettings',
++    fieldSchema['x-settings-props'],
++  );
+  return <div>
+    {/* ... others */}
++    <SchemaDesignerProvider onSubmit={props.onSubmit}>
++     {render(props)}
++    </SchemaDesignerProvider>
+-    <SchemaSettings title={
+-      <MenuOutlined
+-        role="button"
+-        aria-label={getAriaLabel('schema-settings')}
+-        style={{ cursor: 'pointer', fontSize: 12 }}
+-      />
+-    }>
+-      <SchemaSettings.SwitchItem title={'Enable Header'} onClick={() => {}}></SchemaSettings.SwitchItem>
+-      <SchemaSettings.Divider />
+-      <SchemaSettings.ModalItem title={'xxx'} schema={} onSubmit={props.onSubmit}></SchemaSettings.ModalItem>
+-    </SchemaSettings>
+    {/* ... others */}
+  </div>
+}
+```
+
+更多使用说明请参考 [SchemaSettings](https://client.docs.nocobase.com/apis/schema-settings)。
