@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@astrojs/rss": "^2.4.1",
+    "@ibm/plex": "^6.3.0",
     "@resvg/resvg-js": "^2.4.1",
     "astro": "^2.4.5",
     "fuse.js": "^6.6.2",
