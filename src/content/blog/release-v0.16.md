@@ -371,10 +371,10 @@ const MyDesigner = props => {
 };
 ```
 
-现在需要通过 `new SchemaInitializer()` 的方式定义，例如：
+现在需要通过 `new SchemaSetting()` 的方式定义，例如：
 
 ```tsx
-const mySettings = new SchemaInitializer({
+const mySettings = new SchemaSetting({
   name: "MySettings",
   items: [
     {
