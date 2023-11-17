@@ -1,6 +1,6 @@
 ---
 pubDatetime: 2023-11-19T09:13:00Z
-title: "NocoBase 0.16：refactor SchemaInitializer & SchemaSettings"
+title: "NocoBase 0.16：重构 SchemaInitializer, SchemaSettings, 缓存模块"
 postSlug: release-v0.16
 # featured: true
 draft: false
@@ -9,6 +9,8 @@ tags:
 ogImage: ""
 description: ""
 ---
+
+## 目录
 
 ## 不兼容的变化
 
@@ -452,3 +454,48 @@ const MyDesigner = (props) => {
 ```
 
 更多使用说明请参考 [SchemaSettings](https://client.docs.nocobase.com/apis/schema-settings)。
+
+### 缓存模块 (`@nocobase/cache`) 使用方式变更
+
+重构后的缓存模块基于 [node-cache-manager](https://github.com/node-cache-manager/node-cache-manager) 封装，实现统一的缓存管理，内置有内存和 redis 两种缓存方式，同时支持各类缓存中间件扩展接入。具体的使用方法请参考 [API 文档](https://docs-cn.nocobase.com/api/cache)。
+
+#### 创建缓存方法变更
+
+以前创建缓存通过 `createCache` 方法创建，该方法已废弃。
+
+```ts
+import { createCache } from "@nocobase/cache";
+
+const cache = createCache();
+```
+
+新的缓存由 `CacheManager` 统一管理，通过 `app.cacheManager` 创建。
+
+```ts
+const cache = await app.cacheManager.createCache({
+  name: "memory", // 缓存唯一标识
+  store: "memory", // 缓存方式
+  // 其他缓存配置
+  max: 2000,
+  ttl: 60 * 1000,
+});
+```
+
+#### 环境变量变更
+
+以前的缓存环境变量配置需要配置一个 JSON 字符串作为配置参数。
+
+```bash
+CACHE_CONFIG={"storePackage":"cache-manager-fs-hash","ttl":86400,"max":1000}
+```
+
+新的环境变量：
+
+```bash
+# 默认缓存方式，值为缓存方式的唯一标识
+CACHE_DEFAULT_STORE=memory
+# 内存缓存项目最大数量
+CACHE_MEMORY_MAX=2000
+# Redis，可选
+CACHE_REDIS_URL=redis://localhost:6379
+```
