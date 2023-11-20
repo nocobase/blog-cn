@@ -68,3 +68,14 @@ CACHE_MEMORY_MAX=2000
 # Redis，可选
 CACHE_REDIS_URL=redis://localhost:6379
 ```
+
+## 完整更新记录
+
+- refactor(cache): improve cache [`#3004`](https://github.com/nocobase/nocobase/pull/3004)
+- fix: local storage base url [`#3063`](https://github.com/nocobase/nocobase/pull/3063)
+- feat: show table definition [`#3061`](https://github.com/nocobase/nocobase/pull/3061)
+- feat: mariadb support [`#3052`](https://github.com/nocobase/nocobase/pull/3052)
+- fix(plugin-workflow): client minor fixes [`#3062`](https://github.com/nocobase/nocobase/pull/3062)
+- chore: view inference [`#3060`](https://github.com/nocobase/nocobase/pull/3060)
+- fix: sort by association collection [`#3058`](https://github.com/nocobase/nocobase/pull/3058)
+- feat: node &gt;= 18 [`#3066`](https://github.com/nocobase/nocobase/pull/3066)
