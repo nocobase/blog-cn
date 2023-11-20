@@ -12,7 +12,7 @@ description: ""
 
 ## 新特性
 
-之前版本的 cache 可用性较差（仅支持 memory 缓存），v0.16 版本进行了重构，内置了 memory 和 redis 两种 store（缓存存储方式），具体的使用方法请参考 [API 文档](https://docs-cn.nocobase.com/api/cache/cache-manager)。
+之前版本的 cache 可用性较差（仅支持 memory 缓存），v0.16 版本进行了重构，内置了 memory 和 redis 两种 store（缓存存储方式），也支持自定义存储方式，具体的使用方法请参考 [API 文档](https://docs-cn.nocobase.com/api/cache/cache-manager)。
 
 ## 不兼容的变化
 
