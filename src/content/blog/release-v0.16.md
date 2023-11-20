@@ -1,5 +1,5 @@
 ---
-pubDatetime: 2023-11-19T09:13:00Z
+pubDatetime: 2023-11-20T19:59:00Z
 title: "NocoBase 0.16：全新的缓存模块"
 postSlug: release-v0.16
 # featured: true
