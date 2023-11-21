@@ -279,6 +279,13 @@ const FormBlockInitializer: FC<FormBlockInitializerProps> = props => {
 };
 ```
 
+#### 组件变更
+
+- 删除 `SchemaInitializer.itemWrap`，不需要再包裹 `item` 组件了。
+- `SchemaInitializer.Item` 组件变更为 `SchemaInitializerItem` 组件，参数不变
+- `SchemaInitializer.ActionModal` 组件变更为 `SchemaInitializerActionModal` 组件，参数不变
+- `SchemaInitializer.SwitchItem` 组件变更为 `SchemaInitializer.Switch` 组件，参数不变
+
 #### 注册方式变更
 
 以前是通过 `SchemaInitializerProvider` 进行注册。例如：
