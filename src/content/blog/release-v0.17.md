@@ -36,7 +36,14 @@ return <div>
 }
 ```
 
-### SchemaInitializer 的注册和实现变更
+### SchemaInitializer
+
+#### 组件变更
+
+- 删除 `SchemaInitializer.itemWrap`，不需要再包裹 `item` 组件了。
+- `SchemaInitializer.Item` 组件变更为 `SchemaInitializerItem` 组件，参数不变
+- `SchemaInitializer.ActionModal` 组件变更为 `SchemaInitializerActionModal` 组件，参数不变
+- `SchemaInitializer.SwitchItem` 组件变更为 `SchemaInitializer.Switch` 组件，参数不变
 
 #### 定义方式变更
 
@@ -279,13 +286,6 @@ const FormBlockInitializer: FC<FormBlockInitializerProps> = props => {
 };
 ```
 
-#### 组件变更
-
-- 删除 `SchemaInitializer.itemWrap`，不需要再包裹 `item` 组件了。
-- `SchemaInitializer.Item` 组件变更为 `SchemaInitializerItem` 组件，参数不变
-- `SchemaInitializer.ActionModal` 组件变更为 `SchemaInitializerActionModal` 组件，参数不变
-- `SchemaInitializer.SwitchItem` 组件变更为 `SchemaInitializer.Switch` 组件，参数不变
-
 #### 注册方式变更
 
 以前是通过 `SchemaInitializerProvider` 进行注册。例如：
@@ -367,7 +367,14 @@ render({ style: { marginLeft: 8 } })
 
 具体参数说明请参考 [SchemaInitializer 文档](https://client.docs.nocobase.com/apis/schema-initializer)。
 
-### SchemaSettings 的注册和实现变更
+### SchemaSettings
+
+#### 组件变更
+
+- `SchemaSettings` 改为 `SchemaSettingsDropdown`
+- `SchemaSettings.ComponentName` 改为 `SchemaSettingsComponentName`，例如 `SchemaSettings.ModalItem` 改为 `SchemaSettingsModalItem`、`SchemaSettings.Divider` 改为 `SchemaSettingsDivider`
+
+#### 定义方式变更
 
 以前 SchemaSettings 是和 Designer 写在一起的，例如：
 
