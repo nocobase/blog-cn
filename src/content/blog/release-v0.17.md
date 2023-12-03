@@ -10,554 +10,104 @@ ogImage: ""
 description: ""
 ---
 
-## 目录
+## 新特性
+
+过去几个月，有许多开发者向我们反馈前端开发的难度很大，文档也不完整。为了降低开发学习成本，提供更好的前端开发体验，在过去的几个月里，我们分阶段的对前端内核进行了重构，其中包括：
+
+- NocoBase Client
+
+  - Application
+
+    - [Application](https://pr-2802.client.docs-cn.nocobase.com/core/application/application)
+    - [Plugin](https://pr-2802.client.docs-cn.nocobase.com/core/application/plugin)
+    - [PluginManager](https://pr-2802.client.docs-cn.nocobase.com/core/application/plugin-manager)
+    - [RouterManager](https://pr-2802.client.docs-cn.nocobase.com/core/application/router-manager)
+    - [PluginSettingsManager](https://pr-2802.client.docs-cn.nocobase.com/core/application/plugin-settings-manager)
+  - UI Schema
+
+    - [SchemaComponent](https://pr-2802.client.docs-cn.nocobase.com/core/ui-schema/schema-component)
+    - [Designable](https://pr-2802.client.docs-cn.nocobase.com/core/ui-schema/designable)
+    - [SchemaInitializer](https://pr-2802.client.docs-cn.nocobase.com/core/ui-schema/schema-initializer)
+    - [SchemaInitializerManager](https://pr-2802.client.docs-cn.nocobase.com/core/ui-schema/schema-initializer-manager)
+    - [SchemaSettings](https://pr-2802.client.docs-cn.nocobase.com/core/ui-schema/schema-settings)
+    - [SchemaSettingsManager](https://pr-2802.client.docs-cn.nocobase.com/core/ui-schema/schema-settings-manager)
+    - [SchemaToolbar](https://pr-2802.client.docs-cn.nocobase.com/core/ui-schema/schema-toolbar)
+  - CollectionManager（进行中）
+
+为了解决用户上手难的问题，过去几周，我们也重新梳理了各个部分文档，其中包括
+
+- 使用手册（全面改版，将在未来一两周内发布）
+- 插件开发（全面改版，已发布）
+- 插件文档（新版块，包括所有已有插件的介绍、使用、扩展开发的说明，将在未来一两周内发布）
+- 客户端内核（@nocobase/client）的 API 文档（新版块，已发布）
 
 ## 不兼容的变化
 
-### app.addComponent 方法私有化
+这一次 v0.17 的重点是 UI Schema，重构了 UI Schema 设计器相关模块
 
-`app.addComponent` 方法私有化，不再对外暴露，需要通过 `app.addComponents` 方法注册组件。
+### SchemaInitializer 的变化
 
-```diff
-- app.addComponent(MyComponent, 'MyComponent')
-+ app.addComponent({ MyComponent })
-```
-
-### 删除 `PluginManagerContext`
-
-```diff
-const MyProvider = props => {
-- const ctx = useContext(PluginManagerContext);
-return <div>
-- <PluginManagerContext.Provider value={{components: { ...ctx?.components }}}>
-  {/* ... */}
-- </PluginManagerContext.Provider>
-</div>
-}
-```
-
-### SchemaInitializer
-
-#### 组件变更
-
-- 删除 `SchemaInitializer.itemWrap`，不需要再包裹 `item` 组件了。
-- `SchemaInitializer.Item` 组件变更为 `SchemaInitializerItem` 组件，参数不变
-- `SchemaInitializer.ActionModal` 组件变更为 `SchemaInitializerActionModal` 组件，参数不变
-- `SchemaInitializer.SwitchItem` 组件变更为 `SchemaInitializer.Switch` 组件，参数不变
-
-#### 定义方式变更
-
-以前 `SchemaInitializer` 支持 2 种定义方式，分别为对象和组件。例如：
-
-```tsx | pure
-const BlockInitializers = {
-  title: '{{t("Add block")}}',
-  icon: "PlusOutlined",
-  items: [
-    // ...
-  ],
-  // ...
-};
-```
-
-```tsx | pure
-const BlockInitializers = () => {
-  return (
-    <SchemaInitializer.Button
-      title={'{{t("Add block")}}'}
-      icon={"PlusOutlined"}
-      items={
-        [
-          // ...
-        ]
-      }
-      // ...
-    />
-  );
-};
-```
-
-现在仅支持 `new SchemaInitializer()` 的实例。例如：
-
-```tsx | pure
-const blockInitializers = new SchemaInitializer({
-  name: "BlockInitializers", // 名称，和原来保持一致
-  title: '{{t("Add block")}}',
-  icon: "PlusOutlined",
-  items: [
-    // ...
-  ],
-  // ...
-});
-```
-
-#### 参数变更
-
-整体来说，`new SchemaInitializer()` 的参数参考了之前对象定义方式，但又有新的变更。具体如下：
-
-- 新增 `name` 必填参数，用于 `x-initializer` 的值。
-- 新增 `Component` 参数，用于定制化渲染的按钮。默认为 `SchemaInitializerButton`。
-- 新增 `componentProps`、`style` 用于配置 `Component` 的属性和样式。
-- 新增 `ItemsComponent` 参数，用于定制化渲染的列表。默认为 `SchemaInitializerItems`。
-- 新增 `itemsComponentProps`、`itemsComponentStyle` 用于配置 `ItemsComponent` 的属性和样式。
-- 新增 `popover` 参数，用于配置是否显示 `popover` 效果。
-- 新增 `useInsert` 参数，用于当 `insert` 函数需要使用 hooks 时。
-- 更改 将 `dropdown` 参数改为了 `popoverProps`，使用 `Popover` 代替了 `Dropdown`。
-- items 参数变更
+- 新增 `SchemaInitializerManager`，用于注册 `SchemaInitializer`
+- 新增 `useSchemaInitializerRender()` 代替原来的 `useSchemaInitializer()` 的 `render()`
+- 新增 `useSchemaInitializerItem()`，用于获取当前初始化项的上下文
+- 新增 `SchemaInitializerItemGroup` 组件，用作 `type: 'itemGroup'` 的默认组件
+- 新增 `SchemaInitializerSubMenu` 组件，用作 `type: 'subMenu'` 的默认组件
+- 新增 `SchemaInitializerDivider` 组件，用作 `type: 'divider'` 的默认组件
+- 新增 `SchemaInitializerChildren` 组件，用于自定义渲染多个列表项
+- 新增 `SchemaInitializerChild` 组件，用于自定义渲染单个列表项
+- 更改 `SchemaInitializerContext` 职责变更，用于存放当前初始化器的上下文
+- 更改 `useSchemaInitializer()` 职责变更，用于获取当前初始化器的上下文
+- 更改 `function SchemaInitializer` 变更为 `class SchemaInitializer`，用于定义初始化器
+- 更改 `SchemaInitializer` 参数变更
+  - 新增 `name` 必填参数，用于 `x-initializer` 的值。
+  - 新增 `Component` 参数，用于定制化渲染的按钮。默认为 `SchemaInitializerButton`。
+  - 新增 `componentProps`、`style` 用于配置 `Component` 的属性和样式。
+  - 新增 `ItemsComponent` 参数，用于定制化渲染的列表。默认为 `SchemaInitializerItems`。
+  - 新增 `itemsComponentProps`、`itemsComponentStyle` 用于配置 `ItemsComponent` 的属性和样式。
+  - 新增 `popover` 参数，用于配置是否显示 `popover` 效果。
+  - 新增 `useInsert` 参数，用于当 `insert` 函数需要使用 hooks 时。
+  - 更改 将 `dropdown` 参数改为了 `popoverProps`，使用 `Popover` 代替了 `Dropdown`。
+- 更改 `SchemaInitializer` 的 `items` 参数变更
   - 新增 `useChildren` 函数，用于动态控制子项。
   - 新增 `componentProps` 函数，用于组件自身的属性。
-  - 更改 `visible` 参数改为了 `useVisible` 函数，用于动态控制是否显示。
-  - 更改 将 `component` 参数改为了 `Component`，用于列表项的渲染。
+  - 新增 `useComponentProps` 函数，用于动态处理组件的 props
   - 更改 将 `key` 参数改为了 `name`，用于列表项的唯一标识。
+  - 更改 将 `visible` 参数改为了 `useVisible` 函数，用于动态控制是否显示。
+  - 更改 将 `component` 参数改为了 `Component`，用于列表项的渲染。
+- 更改 `SchemaInitializer.Button` 变更为 `SchemaInitializerButton`，是 SchemaInitializer 的 Component 参数的默认值；
+- 更改 `SchemaInitializer.Item` 变更为 `SchemaInitializerItem`，参数不变；
+- 更改 `SchemaInitializer.ActionModal` 变更为 `SchemaInitializerActionModal`，参数不变；
+- 更改 `SchemaInitializer.SwitchItem` 变更为 `SchemaInitializer.Switch`，参数不变。
+- 删除 `SchemaInitializerProvider`，用 `SchemaInitializerManager` 代替
+- 删除 `SchemaInitializer.itemWrap`，不需要再包裹 `item` 组件了；
+
+### SchemaSettings 的变化
+
+- 新增 `SchemaSettingsManager` 用于注册 `SchemaSettings`
+- 新增 `useSchemaSettingsItem()`
+- 新增 `useSchemaSettingsRender()`
+- 新增 `x-settings` 参数，用于配置 schema 的设置器
+- 新增 `x-toolbar` 参数，用于配置 schema 的工具栏
+- 新增 `SchemaToolbar` 组件，用于自定义 schema 的工具栏
+- 新增 `useSchemaToolbarRender()`，代替原来的 `useDesigner()`
+- 更改 `function SchemaSettings` 变更为 `class SchemaSettings`，用于定义设置器
+- 更改 原 `SchemaSettings` 变更为 `SchemaSettingsDropdown`
+- 更改 `SchemaSettings.Item` 变更为 `SchemaSettingsItem`
+- 更改 `SchemaSettings.ItemGroup` 变更为 `SchemaSettingsItemGroup`
+- 更改 `SchemaSettings.SubMenu` 变更为 `SchemaSettingsSubMenu`
+- 更改 `SchemaSettings.Divider` 变更为 `SchemaSettingsDivider`
+- 更改 `SchemaSettings.Remove` 变更为 `SchemaSettingsRemove`
+- 更改 `SchemaSettings.SelectItem` 变更为 `SchemaSettingsSelectItem`
+- 更改 `SchemaSettings.CascaderItem` 变更为 `SchemaSettingsCascaderItem`
+- 更改 `SchemaSettings.SwitchItem` 变更为 `SchemaSettingsSwitchItem`
+- 更改 `SchemaSettings.ModalItem` 变更为 `SchemaSettingsModalItem`
+- 更改 `SchemaSettings.ActionModalItem` 变更为 `SchemaSettingsActionModalItem`
+- 删除 `x-designer` 参数已废弃，将来会删除，使用 `x-toolbar` 代替，
+- 删除 `useDesigner()` 已废弃，将来会删除，使用 `useSchemaToolbarRender()` 代替
+
+更多详情查看 [NocoBase 0.17 的不兼容变化](#)
+
+## 完整更新记录
+
+待补充
 
-案例 1：
-
-```diff
-- export const BlockInitializers = {
-+ export const blockInitializers = new SchemaInitializer({
-+ name: 'BlockInitializers',
-  'data-testid': 'add-block-button-in-page',
-  title: '{{t("Add block")}}',
-  icon: 'PlusOutlined',
-  wrap: gridRowColWrap,
-   items: [
-    {
--     key: 'dataBlocks',
-+     name: 'data-blocks',
-      type: 'itemGroup',
-      title: '{{t("Data blocks")}}',
-      children: [
-        {
--         key: 'table',
-+         name: 'table',
--         type: 'item', // 当有 Component 参数时，就不需要此了
-          title: '{{t("Table")}}',
--         component: TableBlockInitializer,
-+         Component: TableBlockInitializer,
-        },
-         {
-          key: 'form',
-          type: 'item',
-          title: '{{t("Form")}}',
-          component: FormBlockInitializer,
-        }
-      ],
-    },
-  ],
-});
-```
-
-案例 2：
-
-原来是组件定义的方式：
-
-```tsx | pure
-export const BulkEditFormItemInitializers = (props: any) => {
-  const { t } = useTranslation();
-  const { insertPosition, component } = props;
-  const associationFields = useAssociatedFormItemInitializerFields({
-    readPretty: true,
-    block: "Form",
-  });
-  return (
-    <SchemaInitializer.Button
-      data-testid="configure-fields-button-of-bulk-edit-form-item"
-      wrap={gridRowColWrap}
-      icon={"SettingOutlined"}
-      items={[
-        {
-          type: "itemGroup",
-          title: t("Display fields"),
-          children: useCustomBulkEditFormItemInitializerFields(),
-        },
-        {
-          type: "divider",
-        },
-        {
-          type: "item",
-          title: t("Add text"),
-          component: BlockItemInitializer,
-        },
-      ]}
-      insertPosition={insertPosition}
-      component={component}
-      title={component ? null : t("Configure fields")}
-    />
-  );
-};
-```
-
-现在需要改为 `new SchemaInitializer()` 的方式：
-
-```tsx | pure
-const bulkEditFormItemInitializers = new SchemaInitializer({
-  name: "BulkEditFormItemInitializers",
-  "data-testid": "configure-fields-button-of-bulk-edit-form-item",
-  wrap: gridRowColWrap,
-  icon: "SettingOutlined",
-  // 原 insertPosition 和 component 是透传的，这里不用管，也是透传的
-  items: [
-    {
-      type: "itemGroup",
-      title: t("Display fields"),
-      name: "display-fields", // 记得加上 name
-      useChildren: useCustomBulkEditFormItemInitializerFields, // 使用到了 useChildren
-    },
-    {
-      type: "divider",
-    },
-    {
-      title: t("Add text"),
-      name: "add-text",
-      Component: BlockItemInitializer, // component 替换为 Component
-    },
-  ],
-});
-```
-
-关于参数的具体说明可以参考 `SchemaInitializer` 的类型定义，以及 [SchemaInitializer 文档](https://client.docs.nocobase.com/client/schema-initializer)。
-
-#### 实现原理变更
-
-以前是将所有 `items` 转为 `Menu` 组件的 items JSON 对象，最后渲染成 Menu 列表。
-
-现在默认情况下仅仅是渲染 `items` 列表项的 `Component` 组件，至于 `Component` 组件内部如何渲染取决于自身，最后也不会拼接成一个 JSON 对象。
-
-具体说明参考 `SchemaInitializer` 的 [Nested items 示例](https://client.docs.nocobase.com/client/schema-initializer#nested-items)。
-
-#### 列表中的组件获取参数方式变更
-
-##### insert
-
-之前是通过 `props` 获取 `insert` 函数，现在需要通过 `useSchemaInitializer()` 获取。例如：
-
-```diff
-const FormBlockInitializer = (props) => {
--  const { insert } = props;
-+  const { insert } = useSchemaInitializer();
- // ...
-}
-
-export const blockInitializers = new SchemaInitializer({
- name: 'BlockInitializers',
- items: [
-  {
-    name: 'form',
-    Component: FormBlockInitializer
-  }
- ]
-});
-```
-
-##### 区分公共参数和组件属性
-
-```ts
-export const blockInitializers = new SchemaInitializer({
-  name: "BlockInitializers",
-  items: [
-    {
-      name: "form",
-      Component: FormBlockInitializer,
-      title: "Form",
-      schema: {
-        // ...
-      },
-      componentProps: {
-        size: "mini",
-      },
-    },
-  ],
-});
-```
-
-其中写在外层的 `title` 和 `schema` 被称为公共参数，写在 `componentProps` 中的 `size` 被称为组件属性，他们获取方式也不同，公共参数通过 `useSchemaInitializerItem()` hooks 获取，组件属性通过 `props` 获取。例如：
-
-```tsx | pure
-import { FC } from "react";
-import { useSchemaInitializerItem } from "@nocobase/client";
-
-interface FormBlockInitializerProps {
-  size: string;
-}
-const FormBlockInitializer: FC<FormBlockInitializerProps> = props => {
-  const { size } = props;
-  const { title, schema } = useSchemaInitializerItem();
-  // ...
-};
-```
-
-#### 注册方式变更
-
-以前是通过 `SchemaInitializerProvider` 进行注册。例如：
-
-```tsx | pure
-<SchemaInitializerProvider
-  initializers={{ BlockInitializers }}
-  components={{ ManualActionDesigner }}
-></SchemaInitializerProvider>
-```
-
-现在需要改为插件的方式。例如：
-
-```tsx | pure
-import { Plugin } from "@nocobase/client";
-
-class MyPlugin extends Plugin {
-  async load() {
-    this.app.schemaInitializerManager.add(blockInitializers);
-    this.app.addComponents({ ManualActionDesigner });
-  }
-}
-```
-
-#### 修改方式变更
-
-以前是通过 `SchemaInitializerContext` 获取到全部的 `Initializers` 然后进行增删改。例如下面代码是为了往 `BlockInitializers` 中的 `media` 下添加 `Hello`：
-
-```tsx | pure
-const items = useContext<any>(SchemaInitializerContext);
-const mediaItems = items.BlockInitializers.items.find(
-  item => item.key === "media"
-);
-
-if (process.env.NODE_ENV !== "production" && !mediaItems) {
-  throw new Error("media block initializer not found");
-}
-
-const children = mediaItems.children;
-if (!children.find(item => item.key === "hello")) {
-  children.push({
-    key: "hello",
-    type: "item",
-    title: '{{t("Hello block")}}',
-    component: HelloBlockInitializer,
-  });
-}
-```
-
-新的方式则通过插件的方式更简洁的进行修改。例如：
-
-```tsx | pure
-class MyPlugin extends Plugin {
-  async load() {
-    // 获取 BlockInitializers
-    const blockInitializers =
-      this.app.schemaInitializerManager.get("BlockInitializers");
-
-    // 添加 Hello
-    blockInitializers.add("media.hello", {
-      title: '{{t("Hello block")}}',
-      Component: HelloBlockInitializer,
-    });
-  }
-}
-```
-
-#### 使用方式变更
-
-之前使用 `useSchemaInitializer` 的方式进行渲染，现在需要改为 `useSchemaInitializerRender`，并且参数需要增加 `x-initializer-props`。例如：
-
-```diff
-- const { render } = useSchemaInitializer(fieldSchema['x-initializer']);
-+ const { render } = useSchemaInitializerRender(fieldSchema['x-initializer'], fieldSchema['x-initializer-props']);
-
-render();
-render({ style: { marginLeft: 8 } })
-```
-
-具体参数说明请参考 [SchemaInitializer 文档](https://client.docs.nocobase.com/apis/schema-initializer)。
-
-### SchemaSettings
-
-#### 组件变更
-
-- `SchemaSettings` 改为 `SchemaSettingsDropdown`
-- `SchemaSettings.ComponentName` 改为 `SchemaSettingsComponentName`，例如 `SchemaSettings.ModalItem` 改为 `SchemaSettingsModalItem`、`SchemaSettings.Divider` 改为 `SchemaSettingsDivider`
-
-#### 定义方式变更
-
-以前 SchemaSettings 是和 Designer 写在一起的，例如：
-
-```tsx
-const MyDesigner = props => {
-  return (
-    <div>
-      {/* ... others */}
-      <SchemaSettings
-        title={
-          <MenuOutlined
-            role="button"
-            aria-label={getAriaLabel("schema-settings")}
-            style={{ cursor: "pointer", fontSize: 12 }}
-          />
-        }
-      >
-        <SchemaSettings.SwitchItem
-          title={"Enable Header"}
-          onClick={() => {}}
-        ></SchemaSettings.SwitchItem>
-        <SchemaSettings.Divider />
-        <SchemaSettings.ModalItem
-          title={"xxx"}
-          schema={}
-          onSubmit={props.onSubmit}
-        ></SchemaSettings.ModalItem>
-      </SchemaSettings>
-      {/* ... others */}
-    </div>
-  );
-};
-```
-
-现在需要分为三步：
-
-- 1.定义
-- 2.注册
-- 3.使用
-
-#### 定义
-
-现在需要通过 `new SchemaSetting()` 的方式定义，例如：
-
-```tsx
-const mySettings = new SchemaSetting({
-  name: "MySettings",
-  items: [
-    {
-      name: "enableHeader",
-      type: "switch",
-      componentProps: {
-        title: "Enable Header",
-        onClick: () => {},
-      },
-    },
-    {
-      name: "divider",
-      type: "divider",
-    },
-    {
-      name: "xxx",
-      type: "modal",
-      useComponentProps() {
-        // useSchemaDesigner() 会传入 props
-        const { onSubmit } = useSchemaDesigner();
-        return {
-          title: "xxx",
-          schema: {},
-          onSubmit,
-        };
-      },
-    },
-  ],
-});
-```
-
-具体参数说明请参考 [SchemaSettings](https://client.docs.nocobase.com/apis/schema-settings)。
-
-#### 2. 注册
-
-然后需要将其注册到 App 中，例如：
-
-```tsx
-import { Plugin } from "@nocobase/client";
-
-class MyPlugin extends Plugin {
-  async load() {
-    this.app.schemaSettingsManager.add(mySettings);
-  }
-}
-```
-
-#### 3. 使用
-
-最后到 Designer 中使用，例如：
-
-```diff
-+import { useSchemaSettingsRender, SchemaDesignerProvider } from '@nocobase/client';
-
-const MyDesigner = (props) => {
-+  const { render } = useSchemaSettingsRender(
-+    fieldSchema['x-settings'] || 'MySettings',
-+    fieldSchema['x-settings-props'],
-+  );
-  return <div>
-    {/* ... others */}
-+    <SchemaDesignerProvider onSubmit={props.onSubmit}>
-+     {render(props)}
-+    </SchemaDesignerProvider>
--    <SchemaSettings title={
--      <MenuOutlined
--        role="button"
--        aria-label={getAriaLabel('schema-settings')}
--        style={{ cursor: 'pointer', fontSize: 12 }}
--      />
--    }>
--      <SchemaSettings.SwitchItem title={'Enable Header'} onClick={() => {}}></SchemaSettings.SwitchItem>
--      <SchemaSettings.Divider />
--      <SchemaSettings.ModalItem title={'xxx'} schema={} onSubmit={props.onSubmit}></SchemaSettings.ModalItem>
--    </SchemaSettings>
-    {/* ... others */}
-  </div>
-}
-```
-
-更多使用说明请参考 [SchemaSettings](https://client.docs.nocobase.com/apis/schema-settings)。
-
-### 从源码迁移到插件中
-
-如果之前是直接源码 `SchemaSettings`，现在需要迁移到插件中。例如：
-
-```diff
-const MyDesigner = props => {
-  return (
-    <div>
-      {/* ... others */}
-      <SchemaSettings
-        title={
-          <MenuOutlined
-            role="button"
-            aria-label={getAriaLabel("schema-settings")}
-            style={{ cursor: "pointer", fontSize: 12 }}
-          />
-        }
-      >
-        <SchemaSettings.SwitchItem
-          title={"Enable Header"}
-          onClick={() => {}}
-        ></SchemaSettings.SwitchItem>
-        <SchemaSettings.Divider />
-+       {/* 下面是通过修改源码实现扩展能力的 */}
-+        <SchemaSettings.ModalItem
-+          title={"xxx"}
-+          schema={}
-+          onSubmit={props.onSubmit}
-+        ></SchemaSettings.ModalItem>
-      </SchemaSettings>
-      {/* ... others */}
-    </div>
-  );
-};
-```
-
-1. 还原源码
-2. 改为插件方式
-
-```tsx
-class MyPlugin extends Plugin {
-  async load() {
-    this.app.schemaSettingsManager.addItem("MySettings", "xxx", {
-      type: "modal",
-      useComponentProps() {
-        const { onSubmit } = useSchemaDesigner();
-        return {
-          title: "xxx",
-          schema: {},
-          onSubmit,
-        };
-      },
-    });
-  }
-}
-```
-
-更多使用说明请参考 [SchemaSettings](https://client.docs.nocobase.com/apis/schema-settings)。
