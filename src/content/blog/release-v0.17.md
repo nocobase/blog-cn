@@ -1,6 +1,6 @@
 ---
 pubDatetime: 2023-11-19T09:13:00Z
-title: "NocoBase 0.17：重构 SchemaInitializer, SchemaSettings"
+title: "NocoBase 0.17：全新的 SchemaInitializer 和 SchemaSettings"
 postSlug: release-v0.17
 # featured: true
 draft: false
