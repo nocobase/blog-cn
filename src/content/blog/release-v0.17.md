@@ -12,38 +12,24 @@ description: ""
 
 ## 新特性
 
-过去几个月，有许多开发者向我们反馈前端开发的难度很大，文档也不完整。为了降低开发学习成本，提供更好的前端开发体验，在过去的几个月里，我们分阶段的对前端内核进行了重构，其中包括：
+为了降低开发学习成本，提供更好的前端开发体验，在过去的几个月里，我们分阶段的对前端内核进行了重构，其中包括：
 
-- NocoBase Client
-
-  - Application
-
-    - [Application](https://pr-2802.client.docs-cn.nocobase.com/core/application/application)
-    - [Plugin](https://pr-2802.client.docs-cn.nocobase.com/core/application/plugin)
-    - [PluginManager](https://pr-2802.client.docs-cn.nocobase.com/core/application/plugin-manager)
-    - [RouterManager](https://pr-2802.client.docs-cn.nocobase.com/core/application/router-manager)
-    - [PluginSettingsManager](https://pr-2802.client.docs-cn.nocobase.com/core/application/plugin-settings-manager)
-  - UI Schema
-
-    - [SchemaComponent](https://pr-2802.client.docs-cn.nocobase.com/core/ui-schema/schema-component)
-    - [Designable](https://pr-2802.client.docs-cn.nocobase.com/core/ui-schema/designable)
-    - [SchemaInitializer](https://pr-2802.client.docs-cn.nocobase.com/core/ui-schema/schema-initializer)
-    - [SchemaInitializerManager](https://pr-2802.client.docs-cn.nocobase.com/core/ui-schema/schema-initializer-manager)
-    - [SchemaSettings](https://pr-2802.client.docs-cn.nocobase.com/core/ui-schema/schema-settings)
-    - [SchemaSettingsManager](https://pr-2802.client.docs-cn.nocobase.com/core/ui-schema/schema-settings-manager)
-    - [SchemaToolbar](https://pr-2802.client.docs-cn.nocobase.com/core/ui-schema/schema-toolbar)
-  - CollectionManager（进行中）
+![nocobase-client](https://github.com/nocobase/blog-cn/assets/2993310/29db0d3d-b7b6-4d64-bab1-d6b9d8397ed6)
 
 为了解决用户上手难的问题，过去几周，我们也重新梳理了各个部分文档，其中包括
 
+- [插件开发](https://pr-8.docs-cn.nocobase.com/development)（全面改版，已发布）
+- [API 参考 / 客户端内核](https://pr-2802.client.docs-cn.nocobase.com/core/application/application)（新版块，已发布）
 - 使用手册（全面改版，将在未来一两周内发布）
-- 插件开发（全面改版，已发布）
-- 插件文档（新版块，包括所有已有插件的介绍、使用、扩展开发的说明，将在未来一两周内发布）
-- 客户端内核（@nocobase/client）的 API 文档（新版块，已发布）
+- 插件列表（新版块，包括所有已有插件的介绍、使用、扩展开发的说明，将在未来一两周内发布）
+
+这一次 v0.17 的重点是重构了 UI Schema 设计器相关的 SchemaInitializer 和 SchemaSettings
+
+![](https://pr-8.docs-cn.nocobase.com/static/SchemaInitializes.2b68c816.png)
+
+![](https://pr-8.docs-cn.nocobase.com/static/SchemaSettings.7033cd1d.png)
 
 ## 不兼容的变化
-
-这一次 v0.17 的重点是 UI Schema，重构了 UI Schema 设计器相关模块
 
 ### SchemaInitializer 的变化
 
@@ -105,7 +91,7 @@ description: ""
 - 删除 `x-designer` 参数已废弃，将来会删除，使用 `x-toolbar` 代替，
 - 删除 `useDesigner()` 已废弃，将来会删除，使用 `useSchemaToolbarRender()` 代替
 
-更多详情查看 [NocoBase 0.17 的不兼容变化](#)
+更多详情查看 [NocoBase 0.17 的不兼容变化](https://pr-8.docs-cn.nocobase.com/welcome/release/upgrade-to/v017)
 
 ## 完整更新记录
 
