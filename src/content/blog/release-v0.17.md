@@ -18,9 +18,9 @@ description: ""
 
 这一次 v0.17 重构了 UI Schema 设计器相关的 SchemaInitializer 和 SchemaSettings
 
-![](/public/content-static/SchemaInitializer.png)
+![](/content-static/SchemaInitializer.png)
 
-![](/public/content-static/SchemaSettings.png)
+![](/content-static/SchemaSettings.png)
 
 为了解决用户上手难的问题，我们也重新梳理了各部分文档
 
