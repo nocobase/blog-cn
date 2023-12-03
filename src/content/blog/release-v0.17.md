@@ -14,20 +14,20 @@ description: ""
 
 为了降低开发学习成本，提供更好的前端开发体验，在过去的几个月里，我们分阶段的对前端内核进行了重构，其中包括：
 
-![nocobase-client](https://github.com/nocobase/blog-cn/assets/2993310/29db0d3d-b7b6-4d64-bab1-d6b9d8397ed6)
+![nocobase-client](/content-static/nocobase-client.png)
 
-为了解决用户上手难的问题，过去几周，我们也重新梳理了各个部分文档，其中包括
+这一次 v0.17 重构了 UI Schema 设计器相关的 SchemaInitializer 和 SchemaSettings
+
+![](/public/content-static/SchemaInitializer.png)
+
+![](/public/content-static/SchemaSettings.png)
+
+为了解决用户上手难的问题，我们也重新梳理了各部分文档
 
 - [插件开发](https://pr-8.docs-cn.nocobase.com/development)（全面改版，已发布）
-- [API 参考 / 客户端内核](https://pr-2802.client.docs-cn.nocobase.com/core/application/application)（新版块，已发布）
+- [API 参考 / 客户端](https://pr-2802.client.docs-cn.nocobase.com/core/application/application)（新版块，已发布）
 - 使用手册（全面改版，将在未来一两周内发布）
 - 插件列表（新版块，包括所有已有插件的介绍、使用、扩展开发的说明，将在未来一两周内发布）
-
-这一次 v0.17 的重点是重构了 UI Schema 设计器相关的 SchemaInitializer 和 SchemaSettings
-
-![](https://pr-8.docs-cn.nocobase.com/static/SchemaInitializes.2b68c816.png)
-
-![](https://pr-8.docs-cn.nocobase.com/static/SchemaSettings.7033cd1d.png)
 
 ## 不兼容的变化
 
@@ -96,4 +96,3 @@ description: ""
 ## 完整更新记录
 
 待补充
-
