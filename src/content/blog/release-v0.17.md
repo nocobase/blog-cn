@@ -1,5 +1,5 @@
 ---
-pubDatetime: 2023-11-19T09:13:00Z
+pubDatetime: 2023-12-04T13:14:00Z
 title: "NocoBase 0.17：全新的 SchemaInitializer 和 SchemaSettings"
 postSlug: release-v0.17
 # featured: true
