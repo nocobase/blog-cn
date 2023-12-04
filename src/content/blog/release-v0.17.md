@@ -24,8 +24,8 @@ description: ""
 
 为了解决用户上手难的问题，我们也重新梳理了各部分文档
 
-- [插件开发](https://pr-8.docs-cn.nocobase.com/development)（全面改版，已发布）
-- [API 参考 / 客户端](https://pr-2802.client.docs-cn.nocobase.com/core/application/application)（新版块，已发布）
+- [插件开发](https://docs-cn.nocobase.com/development)（全面改版，已发布）
+- [API 参考 / 客户端](https://client.docs-cn.nocobase.com/core/application/application)（新版块，已发布）
 - 使用手册（全面改版，将在未来一两周内发布）
 - 插件列表（新版块，包括所有已有插件的介绍、使用、扩展开发的说明，将在未来一两周内发布）
 
@@ -91,8 +91,4 @@ description: ""
 - 删除 `x-designer` 参数已废弃，将来会删除，使用 `x-toolbar` 代替，
 - 删除 `useDesigner()` 已废弃，将来会删除，使用 `useSchemaToolbarRender()` 代替
 
-更多详情查看 [NocoBase 0.17 的不兼容变化](https://pr-8.docs-cn.nocobase.com/welcome/release/upgrade-to/v017)
-
-## 完整更新记录
-
-待补充
+更多详情查看 [NocoBase 0.17 的不兼容变化](https://docs-cn.nocobase.com/welcome/release/upgrade-to/v017)
