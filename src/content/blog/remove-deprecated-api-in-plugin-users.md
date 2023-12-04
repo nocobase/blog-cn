@@ -10,7 +10,7 @@ ogImage: ""
 description: ""
 ---
 
-在6月份发布的 v0.10 版本中，用户插件 (`@nocobase/plugin-users`) 提供的用户认证功能已经由认证插件 (`@nocobase/plugin-auth`) 取代，用户插件提供的登录、注册等接口也被废弃，参考 [NocoBase 0.10：第二季度的新特性#登录、注册接口的变更](./release-v010#登录注册接口的变更)。
+在6月份发布的 v0.10 版本中，用户插件 (`@nocobase/plugin-users`) 提供的用户认证功能已经由认证插件 (`@nocobase/plugin-auth`) 取代，用户插件提供的登录、注册等接口也被废弃，参考 [NocoBase 0.10：第二季度的新特性#登录、注册接口的变更](/posts/release-v010#登录注册接口的变更)。
 
 ```bash
 /api/users:signin -> /api/auth:signIn
