@@ -6,7 +6,7 @@ postSlug: release-v0.14
 # featured: true
 draft: false
 tags:
-  - release
+  - 发布
 ogImage: ""
 description: ""
 ---
