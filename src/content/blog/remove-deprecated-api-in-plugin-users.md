@@ -1,11 +1,12 @@
 ---
-pubDatetime: 2023-12-04T00:55:00Z
-title: "提示：用户插件中登录认证相关接口已被移除"
+pubDatetime: 2023-12-04T08:55:00Z
+title: "移除：用户插件中已废弃的用户认证接口"
 postSlug: remove-deprecated-api-in-plugin-users 
 # featured: true
 draft: false
 tags:
-  - deprecated
+  - 移除
+  - 用户认证
 ogImage: ""
 description: ""
 ---
