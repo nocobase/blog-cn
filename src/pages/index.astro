@@ -48,7 +48,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         {
           sortedPosts.map(
             ({ data }, index) =>
-              index < 4 && (
+              index < 10 && (
                 <Card
                   href={`/posts/${slugify(data)}`}
                   frontmatter={data}
