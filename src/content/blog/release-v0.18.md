@@ -170,8 +170,9 @@ yarn e2e start-app
 
 为了让内核变得更加精炼，某些功能做了插件化的拆分，近期已完成拆分的插件有：
 
-| 操作 - 批量编辑                | @nocobase/plugin-action-bulk-edit             |
+| 插件名                          | 包名                                          |
 | ------------------------------ | --------------------------------------------- |
+| 操作 - 批量编辑                | @nocobase/plugin-action-bulk-edit             |
 | 操作 - 批量更新                | @nocobase/plugin-action-bulk-update           |
 | 操作 - 复制                    | @nocobase/plugin-action-duplicate             |
 | 看板区块                       | @nocobase/plugin-kanban                       |
