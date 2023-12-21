@@ -86,10 +86,10 @@ import { render, screen, userEvent, waitFor } from '@nocobase/test/client';
 
 it('should display the value of user input', async () => {
   const { container } = render(<App1 />);
-  await waitFor(async () => {
-    const input = container.querySelector('input') as HTMLInputElement;
-    await userEvent.type(input, 'Hello World');
-    expect(screen.getByText('Hello World').innerHTML).toBe('Hello World');
+  const input = container.querySelector('input');
+  await userEvent.type(input, 'Hello World');
+  await waitFor(() => {
+    expect(screen.getByText('Hello World')).toBeInTheDocument();
   });
 });
 ```
