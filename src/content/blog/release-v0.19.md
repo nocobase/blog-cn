@@ -16,11 +16,13 @@ description: ""
 
 ### 遥测
 
-内容待补充
+- 开发文档：https://docs-cn.nocobase.com/development/server/telemetry
+- 内核 API：https://docs-cn.nocobase.com/api/telemetry/telemetry
+- Prometheus 插件：https://docs-cn.nocobase.com/plugins/telemetry-prometheus
 
 ### 应用的备份和还原
 
-内容待补充
+- 插件文档：https://docs-cn.nocobase.com/plugins/backup-restore
 
 ## 内核优化
 
