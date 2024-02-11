@@ -1,10 +1,10 @@
 import type { Site, SocialObjects } from "./types";
 
 export const SITE: Site = {
-  website: "https://blog.nocobase.com/",
+  website: "https://blog-cn.nocobase.com/",
   author: "NocoBase team",
-  desc: "NocoBase is a scalability-first, open-source no-code/low-code platform to build internal tools.",
-  title: "NocoBase",
+  desc: "NocoBase 是一个轻量级、极易扩展的开源无代码和低代码开发平台。无需开发，花几分钟时间部署 NocoBase，马上拥有一个私有、可控、极易扩展的无代码开发平台，帮助企业轻松实现多元业务场景，让数字化更快、更简单、更便宜。",
+  title: "NocoBase 博客",
   ogImage: "nocobase-og.png",
   lightAndDarkMode: true,
   postPerPage: 20,
