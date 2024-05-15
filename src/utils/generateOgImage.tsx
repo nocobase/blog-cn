@@ -3,23 +3,20 @@ import { SITE } from "@config";
 import { writeFile } from "node:fs/promises";
 import { Resvg } from "@resvg/resvg-js";
 
+const isDev = import.meta.env.DEV;
+const website = isDev ? "http://localhost:4321/" : SITE.website;
+
 const fetchFonts = async () => {
   // Regular Font
   const fontFileRegular = await fetch(
-    "https://www.1001fonts.com/download/font/ibm-plex-mono.regular.ttf"
+    `${website}fonts/NotoSansSC/static/NotoSansSC-Regular.ttf`
   );
   const fontRegular: ArrayBuffer = await fontFileRegular.arrayBuffer();
 
-  // Bold Font
-  const fontFileBold = await fetch(
-    "https://www.1001fonts.com/download/font/ibm-plex-mono.bold.ttf"
-  );
-  const fontBold: ArrayBuffer = await fontFileBold.arrayBuffer();
-
-  return { fontRegular, fontBold };
+  return { fontRegular };
 };
 
-const { fontRegular, fontBold } = await fetchFonts();
+const { fontRegular } = await fetchFonts();
 
 const ogImage = (text: string) => {
   return (
@@ -121,15 +118,9 @@ const options: SatoriOptions = {
   embedFont: true,
   fonts: [
     {
-      name: "IBM Plex Mono",
+      name: "NotoSansSC-Regular",
       data: fontRegular,
       weight: 400,
-      style: "normal",
-    },
-    {
-      name: "IBM Plex Mono",
-      data: fontBold,
-      weight: 600,
       style: "normal",
     },
   ],
@@ -139,7 +130,7 @@ const generateOgImage = async (mytext = SITE.title) => {
   const svg = await satori(ogImage(mytext), options);
 
   // render png in production mode
-  if (import.meta.env.MODE === "production") {
+  if (!isDev) {
     const resvg = new Resvg(svg);
     const pngData = resvg.render();
     const pngBuffer = pngData.asPng();
