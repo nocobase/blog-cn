@@ -118,7 +118,7 @@ const options: SatoriOptions = {
   embedFont: true,
   fonts: [
     {
-      name: "ZCOOL KuaiLe",
+      name: "NotoSansSC-Regular",
       data: fontRegular,
       weight: 400,
       style: "normal",
