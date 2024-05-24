@@ -16,13 +16,13 @@ description: ""
 
 ### 认证插件：LDAP 认证
 
-支持用户使用 LDAP 服务器账号密码登录 NocoBase，详情参考 [认证：LDAP](/handbook/auth-ldap) 文档。
+支持用户使用 LDAP 服务器账号密码登录 NocoBase，详情参考 [认证：LDAP](https://docs-cn.nocobase.com/handbook/auth-ldap) 文档。
 
 ![](https://static-docs.nocobase.com/202405191513995.png)
 
 ### 工作流插件：自定义操作事件
 
-当常规的增删改操作无法满足需求时，可以使用工作流的自定义操作事件，自行编排数据处理逻辑，详情参考 [工作流 / 自定义操作事件](/handbook/workflow/plugins/custom-action-trigger) 文档。
+当常规的增删改操作无法满足需求时，可以使用工作流的自定义操作事件，自行编排数据处理逻辑，详情参考 [工作流 / 自定义操作事件](https://docs-cn.nocobase.com/handbook/workflow/plugins/custom-action-trigger) 文档。
 
 ![](https://static-docs.nocobase.com/202405191515770.png)
 
@@ -50,7 +50,7 @@ description: ""
 
 ### 插件开发示例
 
-查看 [插件示例](/plugin-samples) 文档
+查看 [插件示例](https://docs-cn.nocobase.com/plugin-samples) 文档
 
 ![20240520160633](https://static-docs.nocobase.com/20240520160633.png)
 
