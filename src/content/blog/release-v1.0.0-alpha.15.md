@@ -1,5 +1,5 @@
 ---
-pubDatetime: 2024-05-19T21:25:10Z
+pubDatetime: 2024-05-19T21:26:10Z
 title: "NocoBase 1.0.0-alpha.15: 新增插件、改进「配置操作」交互"
 postSlug: release-v1.0.0-alpha.15
 # featured: true
