@@ -16,12 +16,12 @@ description: ""
 
 ### 支持多数据源
 
-新增「[数据源管理](/handbook/data-source-manager)」插件，用于管理所有数据源的数据表和字段，数据源管理插件只是提供中心化的数据源管理界面，并不提供接入数据源的能力，需要和各种数据源插件搭配使用，目前支持的数据源包括：
+新增「[数据源管理](https://docs-cn.nocobase.com/handbook/data-source-manager)」插件，用于管理所有数据源的数据表和字段，数据源管理插件只是提供中心化的数据源管理界面，并不提供接入数据源的能力，需要和各种数据源插件搭配使用，目前支持的数据源包括：
 
-- [主数据库 Main](/handbook/data-source-main)：NocoBase 主数据库，支持 MySQL、PostgreSQL、SQLite 等关系型数据库。
-- [外部 MySQL 数据源](/handbook/data-source-external-mysql)：接入已有的 MySQL 数据库作为数据源。
-- [外部 MariaDB 数据源](/handbook/data-source-external-mariadb)：接入已有的 MariaDB 数据库作为数据源。
-- [外部 PostgreSQL 数据源](/handbook/data-source-external-postgres)：接入已有的 PostgreSQL 数据库作为数据源。
+- [主数据库 Main](https://docs-cn.nocobase.com/handbook/data-source-main)：NocoBase 主数据库，支持 MySQL、PostgreSQL、SQLite 等关系型数据库。
+- [外部 MySQL 数据源](https://docs-cn.nocobase.com/handbook/data-source-external-mysql)：接入已有的 MySQL 数据库作为数据源。
+- [外部 MariaDB 数据源](https://docs-cn.nocobase.com/handbook/data-source-external-mariadb)：接入已有的 MariaDB 数据库作为数据源。
+- [外部 PostgreSQL 数据源](https://docs-cn.nocobase.com/handbook/data-source-external-postgres)：接入已有的 PostgreSQL 数据库作为数据源。
 
 除此之外，也可以扩展更多数据源，可以是常见的各类数据库，也可以是提供 API（SDK）的平台。
 
@@ -101,7 +101,7 @@ description: ""
 
 ![审批处理](https://docs-cn.nocobase.com/static/image-11.7a4bf88b.png)
 
-进一步可通过文档了解：[工作流：审批](/handbook/workflow-approval)
+进一步可通过文档了解：[工作流：审批](https://docs-cn.nocobase.com/handbook/workflow/triggers/approval)
 
 ### 工作流：结束流程节点
 
@@ -109,7 +109,7 @@ description: ""
 
 ![](https://docs-cn.nocobase.com/static/image-16.63d029b2.png)
 
-进一步可通过文档了解：[工作流：结束流程节点](/handbook/workflow/manual/nodes/end)
+进一步可通过文档了解：[工作流：结束流程节点](https://docs-cn.nocobase.com/handbook/workflow/nodes/end)
 
 ### 工作流：自定义变量节点
 
@@ -117,7 +117,7 @@ description: ""
 
 ![](https://docs-cn.nocobase.com/static/image-12.c6b7d588.png)
 
-进一步可通过文档了解：[工作流：自定义变量节点](/handbook/workflow-variable)
+进一步可通过文档了解：[工作流：自定义变量节点](https://docs-cn.nocobase.com/handbook/workflow/nodes/variable)
 
 ### 工作流：请求拦截器
 
@@ -129,7 +129,7 @@ description: ""
 
 ![](https://docs-cn.nocobase.com/static/image-13.828bd2ef.png)
 
-进一步可通过文档了解：[工作流：请求拦截器](/handbook/workflow-request-interceptor)
+进一步可通过文档了解：[工作流：请求拦截器](https://docs-cn.nocobase.com/handbook/workflow/triggers/pre-action)
 
 ### 工作流：响应消息节点
 
@@ -143,7 +143,7 @@ description: ""
 
 ![](https://docs-cn.nocobase.com/static/image-15.03094f30.png)
 
-进一步可通过文档了解：[工作流：响应消息节点](/handbook/workflow-response-message)
+进一步可通过文档了解：[工作流：响应消息节点](https://docs-cn.nocobase.com/handbook/workflow/plugins/response-message)
 
 ## 不兼容的变化
 

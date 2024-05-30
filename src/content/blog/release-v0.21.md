@@ -23,7 +23,7 @@ description: ""
 
 <br />
 
-[更多内容查看 [数据可视化] 文档](/handbook/data-visualization)
+[更多内容查看 [数据可视化] 文档]([/handbook/data-visualization](https://docs-cn.nocobase.com/handbook/data-visualization))
 
 ### 工作流支持多数据源
 
@@ -31,7 +31,7 @@ description: ""
 
 <br />
 
-[更多内容查看 [工作流] 文档](/handbook/workflow)
+[更多内容查看 [工作流] 文档](https://docs-cn.nocobase.com/handbook/workflow)
 
 ### 工作流触发事件优化
 
@@ -52,7 +52,7 @@ description: ""
 
 <br />
 
-[更多内容查看 [工作流 - 操作后事件] 文档](/handbook/workflow-action-trigger)
+[更多内容查看 [工作流 - 操作后事件] 文档](https://docs-cn.nocobase.com/handbook/workflow/plugins/action-trigger)
 
 #### 操作前事件
 
@@ -60,7 +60,7 @@ description: ""
 
 <br />
 
-[更多内容查看 [工作流 - 操作前事件] 文档](/handbook/workflow-request-interceptor)
+[更多内容查看 [工作流 - 操作前事件] 文档](https://docs-cn.nocobase.com/handbook/workflow/plugins/request-interceptor)
 
 ### 自定义品牌插件
 
@@ -68,7 +68,7 @@ description: ""
 
 <br />
 
-[更多内容查看 [自定义品牌] 文档](/handbook/custom-brand)
+[更多内容查看 [自定义品牌] 文档](https://docs-cn.nocobase.com/handbook/custom-brand)
 
 ### 支持 nanoid 字段
 
@@ -76,7 +76,7 @@ description: ""
 
 <br />
 
-[更多内容查看 [nanoid 字段] 文档](/handbook/data-modeling/collection-fields/advanced/nanoid)
+[更多内容查看 [nanoid 字段] 文档](https://docs-cn.nocobase.com/handbook/data-modeling/collection-fields/advanced/nano-id)
 
 ### 支持 uuid 字段
 
@@ -84,7 +84,7 @@ description: ""
 
 <br />
 
-[更多内容查看 [uuid 字段] 文档](/handbook/data-modeling/collection-fields/advanced/uuid)
+[更多内容查看 [uuid 字段] 文档](https://docs-cn.nocobase.com/handbook/data-modeling/collection-fields/advanced/uuid)
 
 ### 支持 Unix 时间戳字段
 
@@ -92,7 +92,7 @@ description: ""
 
 <br />
 
-[更多内容查看 [Unix 时间戳字段] 文档](/handbook/data-modeling/collection-fields/datetime/unix-timestamp)
+[更多内容查看 [Unix 时间戳字段] 文档](https://docs-cn.nocobase.com/handbook/data-modeling/collection-fields/datetime/unix-timestamp)
 
 ### 数字类型字段支持格式化配置
 
@@ -100,7 +100,7 @@ description: ""
 
 <br />
 
-[更多内容查看 [配置字段 / 特有属性设置 / 数字组件] 文档](/handbook/ui/fields/field-settings/input-number)
+[更多内容查看 [配置字段 / 特有属性设置 / 数字组件] 文档](https://docs-cn.nocobase.com/handbook/ui/fields/field-settings/number-format)
 
 ### 支持子路径部署
 

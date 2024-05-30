@@ -330,7 +330,7 @@ NocoBase 采取 AGPL-3.0 和 商业许可双重授权，详情请参考 [NocoBas
 
 #### 1. 升级应用
 
-参考 [NocoBase 升级概述](/welcome/getting-started/upgrading)，将 NocoBase 升级到最新版。
+参考 [NocoBase 升级概述](https://docs-cn.nocobase.com/welcome/getting-started/upgrading)，将 NocoBase 升级到最新版。
 
 如果你之前启用了 CAS、OIDC、SAML 插件，升级时会有以下提示：
 
