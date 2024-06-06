@@ -23,7 +23,7 @@ description: ""
 
 <br />
 
-[更多内容查看 [数据可视化] 文档]([/handbook/data-visualization](https://docs-cn.nocobase.com/handbook/data-visualization))
+[更多内容查看 [数据可视化] 文档](https://docs-cn.nocobase.com/handbook/data-visualization)
 
 ### 工作流支持多数据源
 
